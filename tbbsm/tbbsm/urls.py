@@ -20,5 +20,6 @@ from rykc import views
 
 urlpatterns = [
     path('index/', views.index),
+    path('api_index/?page=1&limit=10', views.api_index),
     path('admin/', admin.site.urls),
 ]

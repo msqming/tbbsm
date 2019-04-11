@@ -1,3 +1,8 @@
 -i http://pypi.doubanio.com/simple/
 Django==2.1
+pymysql
+pandas
+numpy
+xlrd
+
 -e .

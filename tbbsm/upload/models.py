@@ -111,6 +111,31 @@ class Kc_Erp_Zksp(models.Model):
     qjxss = models.FloatField(verbose_name='区间销售数')
 
 
+class Kc_Xh_Spbm(models.Model):
+    """各平台型号与商品编码对照表"""
+    pingtai = models.CharField(max_length=64,verbose_name='平台')
+    xinghao = models.CharField(max_length=32,verbose_name='型号')
+    spbm = models.CharField(max_length=128,verbose_name='商品编码')
+
+
+class Kc_Spxx(models.Model):
+    """库存商品信息表"""
+    xinghao = models.CharField(max_length=32, null=False,verbose_name='型号')
+    pinlei = models.CharField(max_length=68, verbose_name='品类')
+    new_old = models.CharField(max_length=16, verbose_name='新旧品')
+    dingwei = models.CharField(max_length=64, null=False,verbose_name='定位')
+    pinming = models.CharField(max_length=128, null=False,verbose_name='品名')
+    cpu = models.CharField(max_length=16, verbose_name='CPU')
+    xianka = models.CharField(max_length=64, verbose_name='显卡')
+    neicun = models.CharField(max_length=32, verbose_name='内存')
+    ssd = models.CharField(max_length=64,verbose_name='SSD')
+    hhd = models.CharField(max_length=64,verbose_name='HHD')
+    model_name = models.CharField(max_length=128,verbose_name='模具名称')
+    config = models.CharField(max_length=256,verbose_name='配置')
+    pn = models.CharField(max_length=16, null=True,verbose_name='pn')
+
+
+
 
 
 

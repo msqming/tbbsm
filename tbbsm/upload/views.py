@@ -15,8 +15,6 @@ class Data_Upload(View):
         cols = [i for i in df.columns if i not in ['单位', '订单标记']]
         df1 = df[cols]
         df2 = df1.fillna(0)
-        # print(file_obj.name)
-        # print(df2.dtypes)
 
         res_data = {}
         for n in range(df2.shape[0]):
@@ -74,7 +72,6 @@ class Data_Upload(View):
         cols = [i for i in df.columns if i not in ['分库数', '调拨', '拆装', '来源', '单位', '供货商 ']]
         df1 = df[cols]
         df2 = df1.fillna(0)
-        print(file_obj.name)
 
         riqi = file_obj.name[4:12]
         rq = riqi[:4]+'-'+riqi[4:6]+'-'+riqi[6:8]
@@ -111,11 +108,7 @@ class Data_Upload(View):
     def leix_kc_ydh(self, file_obj):
         """处理库存 预到货表格模板"""
         df = pd.read_excel(file_obj)
-        # # 遍历所有列名，排除不需要的
-        cols = [i for i in df.columns]
-        print(cols)
-        df1 = df[cols]
-        df2 = df1.fillna(0)
+        df2 = df.fillna(0)
 
         res_data = {}
         for n in range(df2.shape[0]):
@@ -165,8 +158,45 @@ class Data_Upload(View):
 
             models.Kc_Erp_Zksp.objects.create(**res_data)
 
+    def leix_kc_Kc_Spxx(self,file_obj):
+        """库存商品基础信息"""
+        df = pd.read_excel(file_obj)
+        df2 = df.fillna(0)
+
+        res_data = {}
+        for n in range(df2.shape[0]):
+            res_data['xinghao'] = df2.iloc[n][0]
+            res_data['pinlei'] = df2.iloc[n][1]
+            res_data['new_old'] = df2.iloc[n][2]
+            res_data['dingwei'] = df2.iloc[n][3]
+            res_data['pinming'] = df2.iloc[n][4]
+            res_data['cpu'] = df2.iloc[n][5]
+            res_data['xianka'] = df2.iloc[n][6]
+            res_data['neicun'] = df2.iloc[n][7]
+            res_data['ssd'] = df2.iloc[n][8]
+            res_data['hhd'] = df2.iloc[n][9]
+            res_data['model_name'] = df2.iloc[n][10]
+            res_data['config'] = df2.iloc[n][11]
+            res_data['pn'] = df2.iloc[n][12]
+
+            models.Kc_Spxx.objects.create(**res_data)
 
 
+    def leix_kc_xhbm(self,file_obj):
+        """各平台型号与商品编码对照模板"""
+        df = pd.read_excel(file_obj)
+
+        cols = [i for i in df.columns]
+        df1 = df[cols]
+        df2 = df1.fillna(0)
+
+        res_data = {}
+        for n in range(df2.shape[0]):
+            res_data['pingtai'] = df2.iloc[n][0]
+            res_data['xinghao'] = df2.iloc[n][1]
+            res_data['spbm'] = df2.iloc[n][2]
+
+            models.Kc_Xh_Spbm.objects.create(**res_data)
 
     def get(self,request):
 
@@ -192,21 +222,22 @@ class Data_Upload(View):
         elif table_lx == 'kc_zksp':
             if file_obj:
                 self.leix_kc_zksp(file_obj)
+        elif table_lx == 'Kc_Spxx':
+            if file_obj:
+                self.leix_kc_Kc_Spxx(file_obj)
+        elif table_lx == 'kc_xhbm':
+            if file_obj:
+                self.leix_kc_xhbm(file_obj)
 
         msg['code'] = 0
         s = json.dumps(msg)
         return HttpResponse(s)
-
-
-
 
         # new_file = os.path.join('upload/excel_data', file_obj.name)
         # with open(new_file, 'wb') as f:
         #
         #     for file in file_obj.chunks():
         #         f.write(file)
-
-
 
     def put(self):
         pass

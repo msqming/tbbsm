@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.http import HttpResponse
+from django.shortcuts import HttpResponse
+from django.core import serializers
+
 import json
 
 
@@ -37,7 +39,10 @@ def api_index(request):
             'pn': data.pn
         })
 
-    return HttpResponse(json.dumps(res))
+    # s = serializers.serialize('json', res)
+    s = json.dumps(res)
+
+    return HttpResponse(s)
 
 def data_upload(request):
 

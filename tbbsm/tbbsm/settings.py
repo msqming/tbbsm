@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'tbbsm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test04',
+        'NAME': 'ruyun_data',
         'USER': 'root',
         'PASSWORD': 'root123.com',
         'HOST': '193.112.112.38',

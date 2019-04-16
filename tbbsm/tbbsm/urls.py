@@ -25,7 +25,7 @@ urlpatterns = [
     # 路由分发
     path('upload/', include('upload.urls')),
 
-    path('data_upload/', views.data_upload),
+    # path('data_upload/', views.data_upload),
 
     path('admin/', admin.site.urls),
 ]

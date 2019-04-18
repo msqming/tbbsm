@@ -1,3 +1,0 @@
-django==2.1
-pymysql==pandas==numpy==xlrd==gunicorn==19.8.1
-supervisor==4.0.0dev0

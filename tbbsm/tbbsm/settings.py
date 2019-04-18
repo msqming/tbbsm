@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ruyun_data',
         'USER': 'root',
-        'PASSWORD': 'root123.com',
+        'PASSWORD': 'ROOT123.com',
         'HOST': '193.112.112.38',
         'PORT': 3306,
     }

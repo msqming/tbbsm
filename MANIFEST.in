@@ -1,3 +1,0 @@
-include README.md
-recursive-include tbbsm *.css *.js *.jpg *.gif *.png *.html *.md
-prune tbbsm/tbbsm/static_files

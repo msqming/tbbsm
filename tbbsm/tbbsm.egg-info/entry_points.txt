@@ -1,0 +1,3 @@
+[console_scripts]
+tbbsm_manage = manage:main
+
